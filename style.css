@@ -1,0 +1,1044 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+/* ======================================================
+                    VARIABLES & GENERAL CSS
+========================================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  resize: none;
+  outline: none;
+  border: none;
+}
+
+:root {
+  --color-bg: #e1e1e1;
+  --color-text: #212121;
+  --color-tertiary: #fa87df;
+
+  --shadow: 6px 6px 12px #bababa, -6px -6px 12px #ffffff;
+  --inner-shadow: inset 6px 6px 12px #bababa, inset -6px -6px 12px #ffffff;
+
+  --width-lg: 80%;
+  --width-sm: 95%;
+  --transition: all 0.4s ease-in;
+}
+
+body {
+  font-family: "Great Vibes", cursive;
+  font-family: "Rubik", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+body.active {
+  --color-bg: #212121;
+  --color-text: #e0e0e0;
+  --color-tertiary: crimson;
+
+  --shadow: 0.5rem 0.5rem 1rem #111, -6px -6px 12px #333;
+  --inner-shadow: inset 0.5rem 0.5rem 1rem #111, inset -6px -6px 12px #333;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  box-shadow: var(--inner-shadow);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: var(--shadow);
+  background: var(--color-tertiary);
+}
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+a {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+span,
+p {
+  font-size: 0.9rem;
+}
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+}
+h1 {
+  font-size: 2.8rem;
+}
+h2 {
+  font-size: 2.1rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.1rem;
+}
+.container {
+  margin: 0 auto;
+  width: var(--width-lg);
+}
+section {
+  padding: 5rem 0 3rem;
+  min-height: 100vh;
+}
+.title {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+.title h2 {
+  font-size: 2.5rem;
+  display: inline-block;
+  color: var(--color-text);
+  font-weight: 300;
+}
+.title h2 span {
+  font-size: 2.5rem;
+  color: var(--color-tertiary);
+  font-weight: 900;
+}
+.btn {
+  padding: 1rem 3rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 700;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.btn span {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+}
+.btn.overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-text);
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  visibility: hidden;
+}
+.btn:hover {
+  color: var(--color-tertiary);
+  box-shadow: 1px 1px 10px var(--color-tertiary);
+}
+.btn.overlay:hover::after {
+  visibility: visible;
+  transform: scale(100);
+  -webkit-transform: scale(100);
+  -moz-transform: scale(100);
+  -ms-transform: scale(100);
+  -o-transform: scale(100);
+}
+.scrollbar::-webkit-scrollbar {
+  height: 0.66rem;
+}
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.scrollbar::-webkit-scrollbar-button {
+  width: 0.8rem;
+}
+
+/* ======================================================
+              NAVBAR
+========================================================*/
+nav {
+  padding: 0.3rem 0;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+nav.scrolling {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--color-bg);
+  z-index: 11111;
+  box-shadow: var(--shadow);
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navlist {
+  display: flex;
+  gap: 2rem;
+}
+.navlist li a {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.navlist li a:hover {
+  color: var(--color-tertiary);
+}
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  padding: 0.2rem 2rem;
+  background: transparent;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.logo span {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-tertiary);
+}
+.logo.logo:hover {
+  color: #666;
+  box-shadow: var(--inner-shadow);
+}
+.nav-icons {
+  display: flex;
+  gap: 2rem;
+}
+.nav-icons div {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+  cursor: pointer;
+}
+.nav-icons div:hover {
+  color: var(--color-tertiary);
+  box-shadow: var(--inner-shadow);
+}
+#menu-btn {
+  display: none;
+}
+
+/* ======================================================
+              HOME
+========================================================*/
+.home {
+  width: 100%;
+}
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 20px;
+}
+.home .left {
+  margin-top: 3rem;
+}
+.home .left h1 {
+  font-size: 3.3rem;
+  font-weight: 800;
+}
+.home .left h1 span {
+  font-size: 2.6rem;
+  color: var(--color-tertiary);
+}
+.home .left h3 span {
+  font-size: 1.5rem;
+  color: var(--color-tertiary);
+}
+.home .left p {
+  padding: 1.6rem 0;
+}
+.home .left .btn {
+  padding: 1rem 3rem;
+}
+.home .social-icons {
+  margin-top: 35px;
+  margin-bottom: 40px;
+  display: flex; /* ใช้ Flexbox เพื่อจัดเรียงไอคอนในแนวนอน */
+  justify-content: left; /* จัดตำแหน่งไอคอนให้อยู่กลางในแนวนอน */
+}
+
+.home .social-icons i {
+    height: 3rem; /* ความสูงของกรอบ */
+    width: 3rem;  /* ความกว้างของกรอบ */
+    box-shadow: var(--shadow);
+    background: var(--color-bg);
+    padding: 0; /* ปรับ padding ให้เป็น 0 */
+    margin: 0.7rem;
+    font-weight: 800;
+    border-radius: 0.2rem;
+
+    /* เพิ่มขนาดฟอนต์ให้ใหญ่ขึ้นเพื่อให้ไอคอนอยู่กลาง */
+    font-size: 2.5rem; /* ปรับขนาดนี้ให้เหมาะสม */
+    display: flex; /* ใช้ Flexbox เพื่อจัดตำแหน่ง */
+    align-items: center; /* จัดแนวกลางแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางแนวนอน */
+  
+}
+
+.home .social-icons i:hover {
+  color: var(--color-tertiary);
+  box-shadow: var(--inner-shadow);
+}
+.home .right {
+  margin: auto;
+}
+.home .right img {
+  max-width: 35rem;
+  height: auto;
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+/* ======================================================
+              Hobbies & Interest
+========================================================*/
+.Hobbies-container {
+    display: grid;
+    margin-top: 150px;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+  
+.Hobbies-container .left img {
+    max-height: 20rem;
+    width: auto;
+    box-shadow: var(--shadow);
+    border-radius: 0.5rem 50% 0.5rem 0.5rem;
+    transition: var(--transition);
+}
+  
+.Hobbies-container .left img:hover {
+    border-radius: 50% 0.5rem 0.5rem 0.5rem;
+}
+  
+.Hobbies-container h2 {
+    font-weight: 500;
+}
+.Hobbies .right > h3 {
+    font-size: 1.3rem;
+    color: var(--color-tertiary);
+}
+.Hobbies .right > h3 span {
+    font-size: 1.3rem;
+}
+.Hobbies .right > p {
+    margin: 0.5rem 0 2rem;
+}
+.Hobbies-container .right .title {
+    text-align: left;
+    margin-bottom: 2rem; /* ลดระยะห่างระหว่างหัวข้อกับข้อความถัดไป */
+}
+  
+.Hobbies-container .right h3 {
+    font-size: 1.3rem;
+    color: var(--color-tertiary);
+    margin-top: 0.5rem; /* ลดระยะห่างระหว่างหัวข้อและข้อความ h3 */
+}
+  
+.Hobbies-container .right p {
+    margin: 0.5rem 0 1rem; /* ลดระยะห่างระหว่าง h3 และย่อหน้า */
+}
+  
+/* ======================================================
+              Assignment
+========================================================*/
+.Assignment-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: -20px;
+}
+.Assignment-container .box {
+  width: calc(33.33% - 1.5rem);
+  padding: 0 3rem;
+  text-align: center;
+  background: transparent;
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+.Assignment .title h2 {
+  font-weight: 500;
+  margin-top: 50px;
+}
+.Assignment-container .box i {
+  font-size: 4rem;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition-delay: 0.1s;
+}
+.Assignment-container .box h4 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition-delay: 0.3s;
+}
+.Assignment-container .box .btn {
+  padding: 0.4rem 2rem;
+  margin: 1rem 0 2rem;
+  font-weight: 700;
+  background: var(--color-text);
+  color: var(--color-bg);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition-delay: 0.5s;
+}
+.Assignment-container .box.overlay::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-450px, -250px);
+  -webkit-transform: translate(-450px, -250px);
+  -moz-transform: translate(-450px, -250px);
+  -ms-transform: translate(-450px, -250px);
+  -o-transform: translate(-450px, -250px);
+  background-color: var(--color-tertiary);
+  border-radius: 0 50% 50% 50%;
+  -webkit-border-radius: 0 50% 50% 50%;
+  -moz-border-radius: 0 50% 50% 50%;
+  -ms-border-radius: 0 50% 50% 50%;
+  -o-border-radius: 0 50% 50% 50%;
+  height: 33rem;
+  width: 31rem;
+  z-index: -1;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+}
+.Assignment .box:hover {
+  box-shadow: 1px 1px 15px var(--color-tertiary);
+  color: var(--color-bg);
+}
+.Assignment .box:hover .btn {
+  color: var(--color-tertiary);
+  box-shadow: none;
+  background: var(--color-bg);
+}
+.Assignment .box.overlay:hover::after {
+  visibility: visible;
+  transform: scale(100);
+  -webkit-transform: scale(100);
+  -moz-transform: scale(100);
+  -ms-transform: scale(100);
+  -o-transform: scale(100);
+}
+
+/* ======================================================
+              Project
+========================================================*/
+
+.project-container {
+  display: grid; /* ใช้ grid layout สำหรับจัดเรียงองค์ประกอบ */
+  grid-template-columns: 1fr 3fr; /* แบ่งคอลัมน์ออกเป็น 2 คอลัมน์ */
+  gap: 1rem; /* ระยะห่างระหว่างคอลัมน์ */
+}
+
+.project-buttons {
+  display: flex; /* ใช้ flex layout สำหรับปุ่ม */
+  flex-direction: column; /* เรียงปุ่มในแนวตั้ง */
+  gap: 1.5rem; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.tab-content {
+  margin-top: 30px; /* ระยะห่างด้านบน */
+  display: none; /* ซ่อนเนื้อหาจนกว่าจะมีการเปิด */
+  grid-template-columns: repeat(3, 1fr); /* ตั้งค่าให้มี 3 คอลัมน์ */
+  gap: 0.5rem; /* ระยะห่างระหว่างรูปภาพ */
+  overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
+}
+
+.tab-content.active-content {
+  display: grid; /* ใช้ grid layout เมื่อมีการเปิดเนื้อหา */
+}
+
+.image {
+  position: relative; /* ใช้สำหรับตำแหน่งที่สัมพันธ์กัน */
+  overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
+  border-radius: 0.5rem; /* มุมโค้ง */
+  transition: var(--transition); /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลง */
+}
+
+.image img {
+  width: 100%; /* ให้รูปภาพเต็มความกว้างของคอนเทนเนอร์ */
+  height: auto; /* ปรับความสูงตามอัตราส่วน */
+  box-shadow: var(--shadow); /* เงาของรูปภาพ */
+  border-radius: 0.5rem; /* มุมโค้ง */
+  transition: var(--transition); /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลง */
+}
+
+.image img:hover {
+  transform: scale(1.05); /* ขยายรูปภาพเมื่อเลื่อนเมาส์ */
+}
+
+.tab-content:hover img:not(:hover) {
+  filter: blur(10px); /* ทำให้รูปภาพที่ไม่ถูกเลือกเบลอ */
+  transform: scale(0.9); /* ลดขนาดรูปภาพที่ไม่ถูกเลือก */
+}
+
+/* ======================================================
+              CONTACT
+========================================================*/
+.contact-content {
+  text-align: center; /* ทำให้ข้อความอยู่กลาง */
+  padding: 2rem; /* เพิ่มระยะห่างด้านใน */
+  background: var(--color-bg-light); /* พื้นหลังของ section */
+  border-radius: 1rem; /* มุมโค้ง */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* เงาของกล่อง */
+  margin: 2rem 0; /* ระยะห่างด้านนอก */
+}
+
+.contact-content .row {
+  display: flex; /* ใช้ flexbox เพื่อจัดเรียงในแนวนอน */
+  justify-content: center; /* จัดให้อยู่กลาง */
+  gap: 2rem; /* ระยะห่างระหว่างกล่อง */
+  margin: 1.5rem 0; /* ระยะห่างระหว่างแถว */
+}
+
+.contact-content .social-media {
+  display: flex; /* ใช้ flexbox เพื่อจัดเรียงในแนวนอน */
+  justify-content: center; /* จัดให้อยู่กลาง */
+  gap: 1.5rem; /* ระยะห่างระหว่างปุ่ม */
+  margin: 1rem 0; /* ระยะห่างด้านบนและล่าง */
+}
+
+.contact-content .box-icon {
+  flex-shrink: 0; /* ป้องกันการหดตัวของไอคอน */
+  font-size: 2rem; /* ขนาดของไอคอน */
+  color: var(--color-primary); /* เปลี่ยนสีไอคอน */
+}
+
+.contact-content .box-info {
+  text-align: center; /* ทำให้ข้อความอยู่กลาง */
+  margin-bottom: 1rem; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.contact-content .box-info h4 {
+  margin-bottom: 1rem; /* เพิ่มระยะห่างระหว่าง h4 กับปุ่ม */
+}
+
+.contact .title h2 {
+  font-weight: 500;
+  margin-bottom: 1rem; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.contact-content .box {
+  padding: 1.5rem; /* เพิ่ม padding */
+  border-radius: 0.5rem; /* มุมโค้ง */
+  box-shadow: var(--shadow); /* เงาของกล่อง */
+  background: var(--color-bg); /* พื้นหลังของกล่อง */
+  transition: transform 0.3s; /* เพิ่มการเปลี่ยนแปลง */
+}
+
+.contact-content .box:hover {
+  transform: translateY(-5px); /* เคลื่อนย้ายกล่องขึ้นเมื่อเลื่อนเมาส์ */
+}
+
+.contact-content i {
+  font-size: 1.6rem;
+  margin-bottom: 1rem; /* เพิ่มระยะห่างด้านล่าง */
+  color: var(--color-tertiary);
+}
+
+.contact-content input,
+.contact-content textarea {
+  width: 100%;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  margin: 0.3rem 0;
+  font-size: 85%;
+  font-family: inherit;
+  font-weight: inherit;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: var(--inner-shadow);
+}
+
+.contact-form .btn {
+  border-radius: 3rem;
+}
+
+.contact-form .btn span {
+  font-weight: 900;
+  font-size: 96%;
+  letter-spacing: 0.05rem;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1rem 0;
+  box-shadow: var(--shadow);
+}
+
+.contact-content .btn {
+  margin-top: 1rem; /* เพิ่มระยะห่างด้านบนของปุ่ม */
+  border-radius: 3rem; /* มุมโค้ง */
+  background: var(--color-primary); 
+  padding: 0.8rem 1.5rem; /* เพิ่ม padding */
+  color: rgb(0, 0, 0); /* สีข้อความของปุ่ม */
+  text-decoration: none; /* ไม่มีเส้นใต้ */
+  transition: background 0.3s; /* เพิ่มการเปลี่ยนแปลงสี */
+}
+
+/* ======================================================
+              reference
+========================================================*/
+.reference-container {
+  display: flex;
+  height: 55vh;
+  align-items: flex-start;
+  gap: 1rem;
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 4rem 1rem 2rem;
+}
+.reference .title h2 {
+  font-weight: 500;
+  margin-top: 50px;
+}
+.reference-container .card {
+  position: relative;
+  width: 500px; /* กำหนดความกว้างที่เท่ากันให้การ์ด */
+  height: 280px; /* กำหนดความสูงที่เท่ากันให้การ์ด */
+  min-width: 33%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+  padding: 4rem 2rem 2rem;
+}
+.reference-container img {
+  position: absolute;
+  top: -3rem;
+  width: 6rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin: auto;
+  border: 0.3rem solid var(--color-bg);
+  box-shadow: var(--shadow);
+}
+.reference-container h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-bottom: 0.7rem;
+}
+.reference-container p {
+  margin-top: 1rem; /* เพิ่มระยะห่างด้านบนของข้อความ */
+}
+.reference-container .btn {
+  display: block;
+  width: 40%; /* ปรับปุ่มให้เต็มความกว้างของการ์ด */
+  background-color: var(--color-primary); /* สีพื้นหลังปุ่ม */
+  color: rgb(0, 0, 0); /* สีข้อความของปุ่ม */
+  padding: 0.5rem; /* Padding ของปุ่ม */
+  border: none; /* ไม่มีกรอบ */
+  border-radius: 0.5rem; /* มุมโค้ง */
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อเลื่อนเมาส์ไปที่ปุ่ม */
+  text-align: center; /* จัดให้ข้อความอยู่กลาง */
+  transition: background-color 0.3s; /* เพิ่มการเปลี่ยนแปลงสี */
+  margin-top: 1rem; /* เพิ่มระยะห่างด้านบนของปุ่ม */
+}
+
+/* ======================================================
+              RESPONSIVE TABLET
+========================================================*/
+@media (max-width: 1050px) {
+  #menu-btn {
+    display: block;
+  }
+  #theme-btn {
+    margin-right: -25px;
+  }
+  .navlist {
+    flex-direction: column;
+    position: absolute;
+    top: 11rem;
+    right: 0;
+    font-size: 25px;
+    width: var(--width-lg);
+    box-shadow: var(--shadow);
+    background: var(--color-bg);
+    min-width: 300px;
+    height: 30rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    padding: 2rem 0;
+    z-index: 9999999;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  .navlist a {
+    font-size: 20px;
+  }
+  .navlist.active {
+    top: 4rem;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Hobbies */
+  .Hobbies-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Assignment */
+  .Assignment-container .box {
+    width: calc(50% - 1.5rem);
+  }
+
+  /* Project */
+  .project-container .box {
+    width: calc(50% - 1.5rem);
+  }
+  .project-container {
+    grid-template-columns: 1fr;
+  }
+  .project-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  /* Reference */
+  .reference-container .card {
+    min-width: 50%;
+  }
+}
+
+/* ============= Ipad Pro 11 ====================== */
+@media (max-width: 835px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  section {
+    padding: 3rem 0;
+  }
+  #menu-btn {
+    margin-right: -50px;
+  }
+  .logo {
+    margin-left: -50px;
+  }
+  .home-container {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .home .right img {
+    max-width: 25rem;
+  }
+  .home .left {
+    text-align: center;
+  }
+  
+  /* Hobbies */
+  .Hobbies-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .Hobbies .left img {
+    max-height: 25rem;
+  }
+
+  /* Assignment */
+  .Assignment .title h2 {
+    margin-top: 90px;
+    margin-bottom: 20px;
+  }
+  .Assignment-container .box {
+    width: calc(50% - 1rem);
+    margin-bottom: 30px;
+  }
+
+  /* Project */
+  .project .title h2 {
+    margin-top: 90px;
+    margin-bottom: 20px;
+  }
+  .project-buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+  .project-container .tab-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 20px;
+  }
+  .project-buttons {
+    gap: 2.5rem;
+  }
+
+  /* Reference */
+  .reference {
+    height: 100vh;
+  }
+  .reference .title h2 {
+    margin-top: 100px;
+  }
+  .contact-content .box {
+    padding: 1.2rem 2.1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .contact-content .row {
+    gap: 1rem;
+  }
+  .contact-content .contact-form {
+    padding: 2rem;
+    margin: 6rem 0;
+    width: 700px;
+  }
+  .contact .title h2 {
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+}
+
+/* ========== Ipad Mini =============== */
+@media (max-width: 769px) {
+  .home .right img {
+    max-width: 15rem;
+  }
+  .Hobbies .left img {
+    max-height: 15rem;
+  }
+}
+
+/* ======================================================
+              RESPONSIVE MOBILE
+========================================================*/
+@media (max-width: 429px) {
+  .logo {
+    margin-left: -30px;
+    font-size: 1rem;
+  }
+  .logo span {
+    font-size: 1rem;
+  }
+  #menu-btn {
+    margin-right: -30px;
+    font-size: 13px;
+  }
+  #theme-btn {
+    font-size: 13px;
+  }
+  .home .right img {
+    display: block;
+    height: 14rem;
+    max-width: 100%;
+    margin-top: -15px;
+  }
+  .home .left {
+    position: relative;
+    margin-top: -20px;
+    z-index: 9999;
+  }
+  .home .social-icons {
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .home .left h1 {
+    line-height: 2.2rem;
+    margin-bottom: 2px;
+  }
+  .home .left h1 span {
+    font-size: 2.1rem;
+  }
+  .home .left h3 {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+  .home .left p {
+    font-size: 0.7rem;
+  }
+
+  .home .social-icons i {
+    height: 5rem;
+    width: 5rem;
+    box-shadow: var(--shadow);
+    background: var(--color-bg);
+    padding: 0.8rem;
+    margin: 0.7rem;
+    font-weight: 800;
+    border-radius: 0.2rem;
+  }
+  .Hobbies .left img {
+    height: 25rem;
+    margin-top: -0.6rem;
+  }
+  .Hobbies .right .container {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .Assignment .title h2 {
+    margin-top: 50px;
+  }
+  .Assignment-container .box {
+    width: calc(100% - 0rem);
+    margin-bottom: 1px;
+  }
+  .project .title h2 {
+    margin-top: 50px;
+  }
+  .project-container {
+    margin-top: -20px;
+  }
+  .project-container .tab-content {
+    grid-template-columns: 1fr;
+  }
+  .reference .title h2 {
+    margin-top: 50px;
+  }
+  .reference-container .card {
+    min-width: 100%;
+  }
+
+  .contact {
+    min-height: 100vh;
+  }
+  .contact-content .row {
+    margin-top: -55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .contact .title h2 {
+    margin-top: 50px;
+  }
+  .contact-content .row {
+    margin-top: -100px;
+  }
+
+  .contact-content .box {
+    width: 400px;
+    margin: auto;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .contact-content .contact-form {
+    padding: 2rem;
+    margin: 8.5rem auto;
+    width: 93%;
+    margin-bottom: -10px;
+  }
+  .contact-form .btn {
+    display: flex;
+    margin: auto;
+    padding: 1rem 1.5rem;
+  }
+  .contact-form .btn span {
+    font-weight: 900;
+    font-size: 96%;
+    letter-spacing: 0.05rem;
+  }
+}
